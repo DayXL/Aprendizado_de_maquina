@@ -14,12 +14,14 @@ void embaralhar(Neuronio* neu) {
     }
 }
 
-void learn(Neuronio* neu, int n) {
-    int true = 0, tentativa = 0;
+double learn(Neuronio* neu, int n, int max) {
+    int true = 0, tentativa = 0, con = 0;
+    double menor = 0;
 
-    while (true == 0) {
+    while (true == 0 && con <= max) {
         embaralhar(neu);
         tentativa++;
+        con++;
         true = 1;
         double e = 0;
 
@@ -50,13 +52,11 @@ void learn(Neuronio* neu, int n) {
 
         }
 
-        printf("Erro: %f\n", e);
+        menor = e;
 
     }
 
-    printf("Tentativas: %d \n", tentativa);
-    printf("W1 = %f, W2 = %f, W3 = %f, W4 = %f, W5 = %f\n", neu->w[0], neu->w[1], neu->w[2], neu->w[3], neu->w[4]);
-
+    return menor;
 }
 
 Bloco* criar_bloco(double value) {
@@ -120,25 +120,100 @@ Neuronio* preencher_neu(int linhas, double w, double n, float b) {
     neu->n = n;
     neu->linhas = linhas;
     neu->w = malloc(sizeof(double*) * w);
+    neu->bw = malloc(sizeof(double*) * w);
     neu->xn = malloc(sizeof(double*) * neu->linhas);
     neu->b = b;
 
-    for (int i = 0; i < w; i++ ) {
+    return neu;
+}
+
+double controlar_aprendizado(Neuronio* neu, int tentativas) {
+    double ea = neu->linhas, en = 0, taxa = 0;
+    int t = 0;
+
+    do {
+        en = learn(neu, 4, tentativas);
+
+        if (en < ea) {
+            ea = en;
+
+            for (int i = 0; i < 5; i++ ) {
+                neu->bw[i] = neu->w[i];
+            }
+
+        }
+
+        neu->n = neu->n / 10;
+        tentativas = tentativas * 2;
+        t++;
+
+    } while(t < 10 && en != 0);
+
+    return ea;
+}
+
+void mostrar_pesos(Neuronio* neu, int tam) {
+    for (int i = 0; i < tam; i++ ) {
+        printf("W%d = %f\n", i + 1, neu->bw[i]);
+    }
+}
+
+double calc_taxa_aprend(Neuronio* neu, double e) {
+    double taxa = (e * 100) / neu->linhas;
+    taxa = 100 - taxa;
+    return taxa;
+}
+
+void sortear_pesos(Neuronio* neu, int quant) {
+    for (int i = 0; i < quant; i++ ) {
         neu->w[i] = (rand() / (double)RAND_MAX) * 2 - 1;
     }
-
-    return neu;
 }
 
 int main(void) {
     srand(time(NULL));
 
     Neuronio* neu1 = preencher_neu(150, 5, 0.01, 1);
+    Neuronio* neu2 = preencher_neu(150, 5, 0.01, 1);
+    Neuronio* neu3 = preencher_neu(150, 5, 0.01, 1);
+    int tentativas = 100;
+    double taxa = 0, ea = 0;
 
     printf("Iris setosa: \n");
     recuperar(neu1, "iris_setosa");
 
-    learn(neu1, 4);
+    sortear_pesos(neu1, 5);
+    ea = controlar_aprendizado(neu1, tentativas);
+
+    mostrar_pesos(neu1, 5);
+
+    taxa = calc_taxa_aprend(neu1, ea);
+
+    printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
+
+    printf("\nIris versicolor: \n");
+    recuperar(neu2, "iris_versicolor");
+
+    sortear_pesos(neu2, 5);
+    ea = controlar_aprendizado(neu2, tentativas);
+
+    mostrar_pesos(neu2, 5);
+
+    taxa = calc_taxa_aprend(neu2, ea);
+
+    printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
+
+    printf("\nIris virginica: \n");
+    recuperar(neu3, "iris_virginica");
+
+    sortear_pesos(neu3, 5);
+    ea = controlar_aprendizado(neu3, tentativas);
+
+    mostrar_pesos(neu3, 5);
+
+    taxa = calc_taxa_aprend(neu3, ea);
+
+    printf("Taxa de aprendizado foi de: %.2f%%. \n", taxa);
      
     return 0;
 }
