@@ -6,6 +6,7 @@ typedef struct bloco {
 typedef struct neuronio {
     int linhas;
     double *w;
+    double *bw;
     Bloco **xn;
     double n;
     float b;
