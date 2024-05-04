@@ -14,7 +14,7 @@ int main(void) {
     double taxa = 0, ea = 0;
 
     printf("Iris setosa: \n");
-    recuperar(neu1, "iris_setosa");
+    recuperar(neu1, "iris_setosa", "./Base_iris/iris.txt");
 
     sortear_pesos(neu1, 5);
     ea = controlar_aprendizado(neu1, tentativas);
@@ -26,7 +26,7 @@ int main(void) {
     printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
 
     printf("\nIris versicolor: \n");
-    recuperar(neu2, "iris_versicolor");
+    recuperar(neu2, "iris_versicolor", "./Base_iris/iris.txt");
 
     sortear_pesos(neu2, 5);
     ea = controlar_aprendizado(neu2, tentativas);
@@ -38,7 +38,7 @@ int main(void) {
     printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
 
     printf("\nIris virginica: \n");
-    recuperar(neu3, "iris_virginica");
+    recuperar(neu3, "iris_virginica", "./Base_iris/iris.txt");
 
     sortear_pesos(neu3, 5);
     ea = controlar_aprendizado(neu3, tentativas);
