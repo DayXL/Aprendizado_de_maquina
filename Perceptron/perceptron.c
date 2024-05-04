@@ -118,6 +118,8 @@ void recuperar(Neuronio *neu, char *str, char *arq){
 
     }
 
+    fclose(f);
+
 }
 
 Neuronio* preencher_neu(int linhas, double w, double n, float b) {
