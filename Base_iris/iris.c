@@ -17,7 +17,7 @@ int main(void) {
     recuperar(neu1, "iris_setosa", "./Base_iris/iris.txt");
 
     sortear_pesos(neu1, 5);
-    ea = controlar_aprendizado(neu1, tentativas);
+    ea = controlar_aprendizado(neu1, tentativas, 5);
 
     mostrar_pesos(neu1, 5);
 
@@ -29,7 +29,7 @@ int main(void) {
     recuperar(neu2, "iris_versicolor", "./Base_iris/iris.txt");
 
     sortear_pesos(neu2, 5);
-    ea = controlar_aprendizado(neu2, tentativas);
+    ea = controlar_aprendizado(neu2, tentativas, 5);
 
     mostrar_pesos(neu2, 5);
 
@@ -41,7 +41,7 @@ int main(void) {
     recuperar(neu3, "iris_virginica", "./Base_iris/iris.txt");
 
     sortear_pesos(neu3, 5);
-    ea = controlar_aprendizado(neu3, tentativas);
+    ea = controlar_aprendizado(neu3, tentativas, 5);
 
     mostrar_pesos(neu3, 5);
 
