@@ -17,7 +17,7 @@ void embaralhar(Neuronio* neu);
 double learn(Neuronio* neu, int n, int max);
 Bloco* criar_bloco(double value);
 void montar_vetor(Bloco *bloco, Neuronio *neu, int pos);
-void recuperar(Neuronio *neu, char *str);
+void recuperar(Neuronio *neu, char *str, char *arq);
 Neuronio* preencher_neu(int linhas, double w, double n, float b);
 double controlar_aprendizado(Neuronio* neu, int tentativas);
 void mostrar_pesos(Neuronio* neu, int tam);

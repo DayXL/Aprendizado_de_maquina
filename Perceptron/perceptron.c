@@ -81,8 +81,8 @@ void montar_vetor(Bloco *bloco, Neuronio *neu, int pos) {
 
 }
 
-void recuperar(Neuronio *neu, char *str){
-    FILE *f = fopen("./Perceptron/dados.txt", "r");
+void recuperar(Neuronio *neu, char *str, char *arq){
+    FILE *f = fopen(arq, "r");
 
     if (f == NULL) {
         printf("erro com o arquivo\n");
