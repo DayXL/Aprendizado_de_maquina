@@ -132,17 +132,17 @@ Neuronio* preencher_neu(int linhas, double w, double n, float b) {
     return neu;
 }
 
-double controlar_aprendizado(Neuronio* neu, int tentativas) {
+double controlar_aprendizado(Neuronio* neu, int tentativas, int pesos) {
     double ea = neu->linhas, en = 0, taxa = 0;
     int t = 0;
 
     do {
-        en = learn(neu, 4, tentativas);
+        en = learn(neu, pesos - 1, tentativas);
 
         if (en < ea) {
             ea = en;
 
-            for (int i = 0; i < 5; i++ ) {
+            for (int i = 0; i < pesos; i++ ) {
                 neu->bw[i] = neu->w[i];
             }
 
@@ -159,7 +159,14 @@ double controlar_aprendizado(Neuronio* neu, int tentativas) {
 
 void mostrar_pesos(Neuronio* neu, int tam) {
     for (int i = 0; i < tam; i++ ) {
-        printf("W%d = %f\n", i + 1, neu->bw[i]);
+        if (i != tam -1) {
+            printf("W%d = %f\n", i + 1, neu->bw[i]);
+        }
+        else {
+            printf("WB = %f\n", neu->bw[i]);
+        }
+        
+
     }
 }
 

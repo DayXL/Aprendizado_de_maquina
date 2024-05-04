@@ -19,7 +19,7 @@ Bloco* criar_bloco(double value);
 void montar_vetor(Bloco *bloco, Neuronio *neu, int pos);
 void recuperar(Neuronio *neu, char *str, char *arq);
 Neuronio* preencher_neu(int linhas, double w, double n, float b);
-double controlar_aprendizado(Neuronio* neu, int tentativas);
+double controlar_aprendizado(Neuronio* neu, int tentativas, int pesos);
 void mostrar_pesos(Neuronio* neu, int tam);
 double calc_taxa_aprend(Neuronio* neu, double e);
 void sortear_pesos(Neuronio* neu, int quant);
