@@ -9,6 +9,7 @@ int main(void) {
 
     Neuronio* neuA = preencher_neu(5, 26, 0.01, 1);
     Neuronio* neuE = preencher_neu(5, 26, 0.01, 1);
+    Neuronio* neuI = preencher_neu(5, 26, 0.01, 1);
 
     int tentativas = 100;
     double taxa = 0, ea = 0;
@@ -36,6 +37,20 @@ int main(void) {
     mostrar_pesos(neuE, 26);
 
     taxa = calc_taxa_aprend(neuE, ea);
+
+    printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
+
+    taxa = 0, ea = 0;
+
+    printf("Letra I: \n");
+    recuperar(neuI, "I", "./Vogais/vogais.txt");
+
+    sortear_pesos(neuI, 26);
+    ea = controlar_aprendizado(neuI, tentativas, 26);
+
+    mostrar_pesos(neuI, 26);
+
+    taxa = calc_taxa_aprend(neuI, ea);
 
     printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
 
