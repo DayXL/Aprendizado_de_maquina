@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "../Perceptron/perceptron.h"
+#include "../../Perceptron/perceptron.h"
 
 int main(void) {
     srand(time(NULL));
@@ -13,7 +13,7 @@ int main(void) {
     double taxa = 0, ea = 0;
 
     printf("Porta AND: \n");
-    recuperar(neu1, "1", "./Portas_lógicas/and.txt");
+    recuperar(neu1, "1", "./Portas_lógicas/and/and.txt");
 
     sortear_pesos(neu1, 3);
     ea = controlar_aprendizado(neu1, tentativas, 3);
