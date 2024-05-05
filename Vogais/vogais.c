@@ -70,6 +70,19 @@ int main(void) {
 
     printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
 
+    taxa = 0, ea = 0;
+
+    printf("Letra U: \n");
+    recuperar(neuU, "U", "./Vogais/vogais.txt");
+
+    sortear_pesos(neuU, 26);
+    ea = controlar_aprendizado(neuU, tentativas, 26);
+
+    mostrar_pesos(neuU, 26);
+
+    taxa = calc_taxa_aprend(neuU, ea);
+
+    printf("Taxa de aprendizado foi de: %.0f%%. \n", taxa);
+
     return 0;
 }
-
